@@ -1,0 +1,5 @@
+name: CardinalsCore
+authors: [HyGlobalHD,GamerXzavier,NeuroBinds]
+main: CCore\Core\CCore
+api: [2.0.0]
+version: 0.0.1
