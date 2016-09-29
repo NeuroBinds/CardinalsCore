@@ -110,11 +110,6 @@ class CCore extends PluginBase implements Listener{
 
    public function onEnable(){
 
-	    $this->api = EconomyAPI::getInstance();
-
-        $this->getServer()->loadLevel();
-		$this->getServer()->getNetwork()->setName();
-
        $this->getServer()->getPluginManager()->registerEvents($this ,$this);
 
        $this->getLogger()->info("Loading...");
