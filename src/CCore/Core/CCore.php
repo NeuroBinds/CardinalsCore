@@ -108,20 +108,51 @@ use pocketmine\permission\Permission;
 
 class CCore extends PluginBase implements Listener{
 
+	private static $instance = null;
+
    public function onEnable(){
-
+        $this->getServer()->loadLevel("L-S-0001");
+		$this->getServer()->getNetwork()->setName("Under Development");
        $this->getServer()->getPluginManager()->registerEvents($this ,$this);
-
        $this->getLogger()->info("Loading...");
        $this->getLogger()->notice("Load Complete");
 			}
-
-   
-/*Plugins OnDisable*/
    public function onDisable(){
-
        $this->getLogger()->info("Saving Data..");
        $this->getLogger()->warning("Shutdown Complete!"); 
    }
+   public static function getInstance(){
+       return self::$instance;
+   }
+   public function getPlugin(){
+       $this->getInstance();
+       return;
+   }
+   public function Player(){
+      $player = $this->getPlayer();
+   }
+   public function Damager(){
+       $this->Player();
+       return Damager;
+   }
+   public function Debug(){
+       return Debug;
+   }
+   public function Online(){
+       $this->Debug();
+       return null;
+   }
+	public function pluginList(CommandSender $sender){
+		$list = "";
+		foreach(($plugins = $sender->getServer()->getPluginManager()->getPlugins()) as $plugin){
+			if(strlen($list) > 0){
+				$list .= TextFormat::WHITE . ", ";
+			}
+			$list .= $plugin->isEnabled() ? TextFormat::GREEN : TextFormat::RED;
+			$list .= $plugin->getDescription()->getFullName();
+		}
+
+		$sender->sendMessage([count($plugins), $list]));
+	}
 }
 ?>
